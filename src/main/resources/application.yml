@@ -1,0 +1,19 @@
+server:
+  port: 8086
+  context-path: /demo
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/staff?useUnicode=true&characterEncoding=UTF-8&userSSL=false&serverTimezone=UTC
+    username: root
+    password: 6579896965
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  mvc:
+    servlet:
+      load-on-startup: 1
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -1,0 +1,61 @@
+{
+  "code": 0
+  ,"msg": ""
+  ,"count": 3000000
+  ,"data": [{
+    "id": "10001"
+    ,"name": "zcx"
+    ,"phone": 88888888888
+    ,"email": "1489516316@qq.com"
+    ,"department": "测试部"
+    ,"levelId": "人事主管"
+    ,"username": "zcx"
+    ,"age": 18
+    ,"sex": "男"
+	,"status":"离职"
+  }, {
+    "id": "10001"
+    ,"name": "zcx"
+    ,"phone": 88888888888
+    ,"email": "1489516316@qq.com"
+    ,"department": "测试部"
+    ,"levelId": "人事主管"
+    ,"username": "zcx"
+    ,"age": 18
+    ,"sex": "男"
+    ,"status":"离职"
+  }, {
+    "id": "10001"
+    ,"name": "zcx"
+    ,"phone": 88888888888
+    ,"email": "1489516316@qq.com"
+    ,"department": "测试部"
+    ,"levelId": "人事主管"
+    ,"username": "zcx"
+    ,"age": 18
+    ,"sex": "男"
+    ,"status":"离职"
+  }, {
+    "id": "10001"
+    ,"name": "zcx"
+    ,"phone": 88888888888
+    ,"email": "1489516316@qq.com"
+    ,"department": "测试部"
+    ,"levelId": "人事主管"
+    ,"username": "zcx"
+    ,"age": 18
+    ,"sex": "男"
+    ,"status":"离职"
+  }, {
+    "id": "10001"
+    ,"name": "zcx"
+    ,"phone": 88888888888
+    ,"email": "1489516316@qq.com"
+    ,"department": "测试部"
+    ,"levelId": "人事主管"
+    ,"username": "zcx"
+    ,"age": 18
+    ,"sex": "男"
+    ,"status":"离职"
+  }]
+}  
