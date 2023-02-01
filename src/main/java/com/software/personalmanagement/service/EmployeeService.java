@@ -6,7 +6,7 @@ import com.software.personalmanagement.vo.EmployeeVO;
 
 public interface EmployeeService {
 
-    DataVO<EmployeeVO> findData(Integer page, Integer limit);
+    DataVO<EmployeeVO> list(Integer page, Integer limit);
 
     //新增
     int insert(Employee employee);
@@ -15,7 +15,7 @@ public interface EmployeeService {
     Integer delete(int id);
 
     //查询
-    Employee find(String name);
+    DataVO<EmployeeVO> find(String name);
 
     int update(Employee employee);
 }

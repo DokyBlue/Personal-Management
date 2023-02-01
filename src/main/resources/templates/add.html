@@ -1,130 +1,189 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="layui/css/layui.css">
-  <link rel="shortcut icon" href="../resources/favicon.ico" th:href="@{/static/favicon.ico}"/>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="layui/css/layui.css">
+	<link rel="shortcut icon" href="../resources/favicon.ico" th:href="@{/static/favicon.ico}"/>
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
-  <form class="layui-form" action="" id="employee">
-    <div class="layui-form-item">
-      <label class="layui-form-label">姓名</label>
-      <div class="layui-input-block">
-        <input type="text" id="name" name="name" required  lay-verify="required" placeholder="请输入员工名称" autocomplete="off" class="layui-input">
-      </div>
-    </div>
-    <div class="layui-form-item">
-      <label class="layui-form-label">联系方式</label>
-      <div class="layui-input-block">
-        <input type="text" id="phone" name="phone" required lay-verify="required" placeholder="请输入手机号" autocomplete="off" class="layui-input">
-      </div>
-    </div>
-	<div>
-		<label class="layui-form-label">邮箱</label>
-		<div class="layui-input-block">
-			<input type="text" id="email" name="email" required lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+	<div class="layui-header">
+		<div class="layui-logo layui-hide-xs layui-bg-black">企业人事管理系统</div>
+		<ul class="layui-nav layui-layout-right">
+			<li class="layui-nav-item layui-hide layui-show-md-inline-block">
+				<a href="javascript:;">
+					<img src="/imgs/头像.png" class="layui-nav-img"/>
+					张骏
+				</a>
+			</li>
+			<li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+				<a href="javascript:;">
+					<i class="layui-icon layui-icon-more-vertical"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="layui-side layui-bg-black">
+		<div class="layui-side-scroll">
+			<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+			<ul class="layui-nav layui-nav-tree" lay-filter="test">
+				<li class="layui-nav-item"><a href="personnalCenter.html">个人中心</a></li>
+				<li class="layui-nav-item"><a href="attendance.html">考勤打卡</a></li>
+				<li class="layui-nav-item"><a href="salary.html">工资查询</a></li>
+				<li class="layui-nav-item"><a href="reward.html">绩效查询</a></li>
+				<li class="layui-nav-item"><a href="recruitment.html">招聘查询</a></li>
+				<li class="layui-nav-item"><a href="file.html">档案查询</a></li>
+				<li class="layui-nav-item"><a href="workcenter.html">工作中心</a></li>
+			</ul>
 		</div>
 	</div>
-	<br>
-    <div class="layui-form-item">
-      <label class="layui-form-label">部门</label>
-      <div class="layui-input-block">
-        <select name="department" id="departmentId" lay-verify="required">
-         	<option value=""></option>
-         	<option value="1">管理部</option>
-         	<option value="2">财务部</option>
-          	<option value="3">测试部</option>
-          	<option value="4">人事部</option>
-          	<option value="5">行政部</option>
-			<option value="6">宣传部</option>
-        </select>
-      </div>
-    </div>
-	<div class="layui-form-item">
-		<label class="layui-form-label">职位</label>
-		<div class="layui-input-block">
-			<select name="level" id="levelId" lay-verify="required">
-				<option value=""></option>
-				<option value="1">人事主管</option>
-				<option value="2">财务主管</option>
-				<option value="3">管理主管</option>
-				<option value="4">测试主管</option>
-				<option value="5">测试员工</option>
-				<option value="6">管理部员工</option>
-				<option value="7">人事部员工</option>
-				<option value="8">宣传部员工</option>
-				<option value="9">行政部员工</option>
-			</select>
+
+	<div class="layui-body">
+		<br>
+		<div class="layui-layout layui-layout-admin">
+			<form class="layui-form" action="" id="employee">
+				<div class="layui-form-item">
+					<label class="layui-form-label">姓名</label>
+					<div class="layui-input-block">
+						<input type="text" id="name" name="name" required  lay-verify="required" placeholder="请输入员工名称" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">联系方式</label>
+					<div class="layui-input-block">
+						<input type="text" id="phone" name="phone" required lay-verify="required" placeholder="请输入手机号" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div>
+					<label class="layui-form-label">邮箱</label>
+					<div class="layui-input-block">
+						<input type="text" id="email" name="email" required lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<br>
+				<div class="layui-form-item">
+					<label class="layui-form-label">用户名</label>
+					<div class="layui-input-block">
+						<input type="text" id="username" name="username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">年龄</label>
+					<div class="layui-input-block">
+						<input type="text" id="age" name="age" required  lay-verify="required" placeholder="请输入年龄" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-block">
+						<input type="text" id="sex" name="sex" required  lay-verify="required" placeholder="请输入性别" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">部门</label>
+					<div class="layui-input-block">
+						<select name="department" id="departmentId" lay-verify="required">
+							<option value=""></option>
+							<option value="1">管理部</option>
+							<option value="2">财务部</option>
+							<option value="3">测试部</option>
+							<option value="4">人事部</option>
+							<option value="5">行政部</option>
+							<option value="6">宣传部</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">职位</label>
+					<div class="layui-input-block">
+						<select name="level" id="levelId" lay-verify="required">
+							<option value=""></option>
+							<option value="1">人事主管</option>
+							<option value="2">财务主管</option>
+							<option value="3">管理主管</option>
+							<option value="4">测试主管</option>
+							<option value="5">测试员工</option>
+							<option value="6">管理部员工</option>
+							<option value="7">人事部员工</option>
+							<option value="8">宣传部员工</option>
+							<option value="9">行政部员工</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
+						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
-	<div class="layui-form-item">
-	  <label class="layui-form-label">用户名</label>
-	  <div class="layui-input-block">
-		  <input type="text" id="username" name="username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
-	  </div>
-	</div>
-	<div class="layui-form-item">
-	  <label class="layui-form-label">年龄</label>
-	  <div class="layui-input-block">
-		  <input type="text" id="age" name="age" required  lay-verify="required" placeholder="请输入年龄" autocomplete="off" class="layui-input">
-	  </div>
-	</div>
-	<div class="layui-form-item">
-	  <label class="layui-form-label">性别</label>
-	  <div class="layui-input-block">
-		  <input type="text" id="sex" name="sex" required  lay-verify="required" placeholder="请输入性别" autocomplete="off" class="layui-input">
-	  </div>
-	</div>
-    <div class="layui-form-item">
-      <div class="layui-input-block">
-        <button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
-        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-      </div>
-    </div>
-  </form>
+
+
 </div>
 <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
 <script src="layui/layui.js" charset="utf-8"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
-
 <script>
-//Demo
-layui.use('form', function(){
-  var form = layui.form;
+	//JS
+	layui.use(['element', 'layer', 'util'], function(){
+		var element = layui.element
+				,layer = layui.layer
+				,util = layui.util
+				,$ = layui.$;
 
-  //监听提交
-  form.on('submit(add)', function(obj){
-	  /*var url = "add";
-	  data = data.field;
-	  $.post(url, data, function (response){
-		  console.log(response);
-		  if(response.code === 0){
-			  layer.msg("添加成功");
-		  } else layer.msg("添加失败");
-	  });*/
-	  $.ajax({
-		  url: '/add',
-		  type: 'POST',
-		  data: JSON.stringify(obj.field),
-		  dataType: 'json',
-		  contentType: 'application/json'
-	  })
-	  layer.msg("添加成功")
-	  return false;
-  });
-});
+		//头部事件
+		util.event('lay-header-event', {
+			//左侧菜单事件
+			menuLeft: function(othis){
+				layer.msg('展开左侧菜单的操作', {icon: 0});
+			}
+			,menuRight: function(){
+				layer.open({
+					type: 1
+					,content: '<div style="padding: 15px;">看起来高级的模板——by022020114张骏</div>'
+					,area: ['260px', '100%']
+					,offset: 'rt' //右上角
+					,anim: 5
+					,shadeClose: true
+				});
+			}
+		});
+
+	});
 </script>
 
 <script>
-//JS
-layui.use(['element', 'layer', 'util'], function(){
-  var element = layui.element
-  ,layer = layui.layer
-  ,util = layui.util
-  ,$ = layui.$;
-});
+	//JS
+	layui.use(['element', 'layer', 'util'], function(){
+		var element = layui.element
+				,layer = layui.layer
+				,util = layui.util
+				,$ = layui.$;
+	});
 </script>
+
+<script>
+	//Demo
+	layui.use('form', function(){
+		var form = layui.form;
+
+		//监听提交
+		form.on('submit(add)', function(obj){
+			$.ajax({
+				url: '/add',
+				type: 'POST',
+				data: JSON.stringify(obj.field),
+				dataType: 'json',
+				contentType: 'application/json'
+			})
+			layer.msg("添加成功")
+			return false;
+		});
+	});
+</script>
+
 </body>
 </html>

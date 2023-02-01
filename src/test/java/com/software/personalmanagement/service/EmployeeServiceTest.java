@@ -14,10 +14,10 @@ class EmployeeServiceTest {
 
     @Test
     void findData() {
-        DataVO dataVO1 = service.findData(1,10);        //正常一页显示10条数据
-        DataVO dataVO2 = service.findData(0,1);         //第0页的显示
-        DataVO dataVO3 = service.findData(2,100);       //第一页已经显示完所有数据
-        DataVO dataVO4 = service.findData(1,0);         //一页显示0条数据的情况
+        DataVO dataVO1 = service.list(1,10);        //正常一页显示10条数据
+        DataVO dataVO2 = service.list(0,1);         //第0页的显示
+        DataVO dataVO3 = service.list(2,100);       //第一页已经显示完所有数据
+        DataVO dataVO4 = service.list(1,0);         //一页显示0条数据的情况
         int i = 1;
     }
 
@@ -46,8 +46,11 @@ class EmployeeServiceTest {
 
     @Test
     void find(){
-        Employee employee = new Employee();
-        employee = service.find("test1");
+        //Employee employee = new Employee();
+        //employee = service.find("test1");
+        DataVO dataVO = service.find("1234");
+        DataVO dataVO1 = service.find("1");
+        DataVO dataVO2 = service.find("张帆");
         int i = 1;
     }
 

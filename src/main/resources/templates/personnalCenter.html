@@ -37,6 +37,7 @@
         <li class="layui-nav-item"><a href="recruitment.html">招聘查询</a></li>
         <li class="layui-nav-item"><a href="file.html">档案查询</a></li>
         <li class="layui-nav-item"><a href="workcenter.html">工作中心</a></li>
+        <li class="layui-nav-item"><a href="add.html">新增员工</a></li>
       </ul>
     </div>
   </div>
@@ -50,14 +51,19 @@
 <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
 <script src="layui/layui.js" charset="utf-8"></script>
 <script type="text/html" id="toolbarDemo">
-<!--  <form class="layui-form">
+  <form class="layui-form">
     <label class="layui-form-label">姓名</label>
     <div class="layui-input-inline">
-      <input type="text" id='findname' lay-verify="required" placeholder="请输入员工姓名" autocomplete="true" class="layui-input">
+      <input type="text" id="find" lay-verify="required" placeholder="请输入员工姓名" autocomplete="true" class="layui-input">
     </div>
-    <button class="layui-btn layui-btn-normal lay-submit" lay-event="find">查询</button>
-  </form>-->
-  <button class="layui-btn layui-btn-normal" lay-event="add">新增</button>
+    <button class="layui-btn layui-btn-normal lay-submit" lay-event="find" id="findbtn">查询</button>
+  </form>
+<!--  <div class="demoTable layui-form">
+    <div class="layui-inline">
+      <input class="layui-input" name="findname" id="find" placeholder="请输入员工姓名">
+    </div>
+    <button class="layui-btn" data-type="reload" id="findbtn">查询</button>
+  </div>-->
 </script>
 <script type="text/html" id="barDemo">
   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -65,7 +71,7 @@
 </script>
 
 <script>
-  layui.use('table', function(){
+  layui.use(['table', 'form'], function(){
     var table = layui.table;
     table.render({
       elem: '#test'
@@ -99,15 +105,15 @@
     //工具栏事件
     table.on('toolbar(test)', function(obj){
       switch (obj.event) {
-        case 'add':
+        /*case 'add':
           layer.open({
             type: 2,
             content: 'add.html', //这里content是一个普通的String
             area: ['500px','600px']
           });
-          break;
-        /*case 'find':
-          layer.open({
+          break;*/
+        case 'find':
+         /* layer.open({
             type: 2,
             content: 'find.html',
             area: ['500px', '300px']
@@ -116,8 +122,8 @@
             url: '/find'
             ,where: {} //设定异步数据接口的额外参数
             //,height: 300
-          });
-          var name = JSON.stringify($('#findName'))
+          });*/
+/*          var name = JSON.stringify($('#findName'))
           table.reload('list',{
             url: '/find/'+obj.data.name,
             page: {
@@ -127,8 +133,21 @@
               key: 'name',
               name: name.val()
             }
+          });*/
+
+          //console.log($("#find").val())
+          table.reload('list',{
+            url: '/find/'+$("#find").val(),
+            where:{
+              key: 'name',
+              name: $("#find").val(),
+            },
+            page:{
+              curr: 1
+            }
           });
-          break;*/
+
+          break;
       };
     });
 
@@ -161,22 +180,17 @@
     });
   });
 
-  layui.use('form', function (){
-    var form = layui.form;
-    form.on('submit(find)', function (obj){
-      var name = JSON.stringify($('#findName'))
-      table.reload('list',{
-        url: '/find/'+obj.data.name,
-        page: {
-          curr: 1
-        },
-        where: {
-          key: 'name',
-          name: name.val()
-        }
-      });
-    })
-  })
+/*  $("#findbtn").click(function (){
+    console.log($("#find").val())
+    table.reload('list',{
+      where:{
+        name:$("#find").val(),
+      },
+      page:{
+        curr: 1
+      }
+    });
+  })*/
 
 </script>
 <script>
@@ -207,7 +221,5 @@
 
   });
 </script>
-
-
 </body>
 </html>

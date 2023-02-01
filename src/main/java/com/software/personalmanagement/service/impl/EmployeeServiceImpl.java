@@ -35,7 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     @Override
-    public DataVO<EmployeeVO> findData(Integer page, Integer limit) {
+    public DataVO<EmployeeVO> list(Integer page, Integer limit) {
         DataVO dataVO = new DataVO();
         dataVO.setCode(0);
         dataVO.setMsg("");
@@ -90,8 +90,45 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee find(String name){
-        return employeeMapper.find(name);
+    public DataVO<EmployeeVO> find(String name){
+        DataVO dataVO = new DataVO();
+        dataVO.setCode(0);
+        dataVO.setMsg("");
+
+        Employee employee = employeeMapper.find(name);
+        EmployeeVO employeeVO = new EmployeeVO();
+
+        BeanUtils.copyProperties(employee,employeeVO);
+
+        if(employee.getStatus() == 1) employeeVO.setStatus("在职");
+        else if (employee.getStatus() == 0) {
+            employeeVO.setStatus("离职");
+        }
+        else employeeVO.setStatus(null);
+        if(employee.getSex()) employeeVO.setSex("女");
+        else employeeVO.setSex("男");
+
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.eq("id",employee.getDepartmentId());
+        Department department = departmentMapper.selectOne(wrapper);
+        if(department!=null){
+            employeeVO.setDepartment(department.getName());
+        }
+
+        QueryWrapper wrapper1 = new QueryWrapper();
+        wrapper1.eq("id",employee.getLevelId());
+        Level level = levelMapper.selectOne((wrapper1));
+        if(level!=null) {
+            employeeVO.setLevel(level.getName());
+        }
+
+        List<EmployeeVO> employeeVOList = new ArrayList<>();
+
+        employeeVOList.add(employeeVO);
+
+        dataVO.setData(employeeVOList);
+
+        return dataVO;
     }
 
     @Override

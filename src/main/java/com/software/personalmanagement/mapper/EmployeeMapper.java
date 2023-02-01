@@ -2,7 +2,6 @@ package com.software.personalmanagement.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.software.personalmanagement.entity.Employee;
-import com.software.personalmanagement.service.EmployeeService;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
