@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface EmployeeMapper extends BaseMapper<Employee> {
-    @Insert("insert into employee(name, phone, email, department_id, status, level_id, username, age, sex, permission)" +
-            "values (#{name}, #{phone}, #{email}, #{departmentId}, #{status}, #{levelId}, #{username}, #{age}, #{sex}, #{permission})")
+    @Insert("insert into employee(name, phone, email, department_id, status, level_id, username, password, age, sex, permission)" +
+            "values (#{name}, #{phone}, #{email}, #{departmentId}, #{status}, #{levelId}, #{username}, #{username}, #{age}, #{sex}, #{permission})")
     public int insert(Employee employee);
 
     @Delete("delete from employee where id = #{id}")

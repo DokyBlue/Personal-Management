@@ -50,11 +50,26 @@
 <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
 <script src="layui/layui.js" charset="utf-8"></script>
 <script type="text/html" id="toolbarDemo">
-  <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-    
+  <div>
+    <form class="layui-form" th:action="@{/customer}" method="get">
+      <div class="layui-form-item layui-inline">
+        <label class="layui-form-label ">姓名</label>
+        <div class="layui-input-inline">
+          <input class="layui-input" type="text" id="name" name="name" autocomplete="off">
+        </div>
+      </div>
+      <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">邮箱</label>
+        <div class="layui-input-inline">
+          <input class="layui-input" type="text" id="email" name="email" autocomplete="off">
+        </div>
+      </div>
+      <div class="layui-form-item layui-inline">
+        <div class="layui-input-inline">
+          <button class="layui-btn" lay-submit lay-filter="query" id="query-btn" >查询</button>
+        </div>
+      </div>
+    </form>
   </div>
 </script>
 <script type="text/html" id="barDemo">

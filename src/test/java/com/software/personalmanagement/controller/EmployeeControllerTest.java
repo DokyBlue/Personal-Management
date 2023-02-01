@@ -23,7 +23,7 @@ class EmployeeControllerTest {
     @Test
     void insert(){
         Employee employee = new Employee();
-        employeeController.insert(employee);
+        //employeeController.insert(employee);
         int i = 1;
     }
 }

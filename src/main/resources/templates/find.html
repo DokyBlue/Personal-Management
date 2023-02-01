@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="layui/css/layui.css">
+  <link rel="shortcut icon" href="../resources/favicon.ico" th:href="@{/static/favicon.ico}"/>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+  <form class="layui-form" action="" id="employee">
+    <div class="layui-form-item">
+      <label class="layui-form-label">姓名</label>
+      <div class="layui-input-block">
+        <input type="text" id="name" name="name" required  lay-verify="required" placeholder="请输入员工名称" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="find">查询</button>
+        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="js/jquery-3.5.1.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
+
+<script>
+//Demo
+layui.use('form', function(){
+  var form = layui.form;
+
+  //监听提交
+  form.on('submit(find)', function(obj){
+	  $.ajax({
+		  url: '/find/'+obj.field.name,
+		  type: 'POST',
+		  data: JSON.stringify(obj.field.name),
+		  dataType: 'json',
+		  contentType: 'application/json'
+	  });
+	  layer.msg("查询成功")
+  });
+  var table = layui.table;
+  table.render({
+    elem: '#find',
+    url: '/find/'+obj.field.name,
+    title: '查询结果',
+    left: 50,
+    cols:[
+      [
+        {type: 'checkbox', fixed: 'left'}
+        ,{field:'id', title:'ID', width:50, fixed: 'left', unresize: true, sort: true, totalRowText: '合计'}
+        ,{field:'name', title:'姓名', width:80, edit: 'text'}
+        ,{field:'phone', title:'电话', width:120, edit: 'text'}
+        ,{field:'email', title:'邮箱', width:130, edit: 'text', templet: function(res){
+          return '<em>'+ res.email +'</em>'
+        }}
+        ,{field:'department', title:'部门', width:100}
+        ,{field:'level', title:'职位', width:100}
+        ,{field:'username', title:'用户名', width:80}
+        ,{field:'age', title:'年龄', width:80, sort: true}
+        ,{field:'sex', title:'性别', width:50}
+        ,{field:'status', title:'状态', width:60}
+        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:120}
+      ]
+    ],
+    page: true,
+    id: 'find'
+  });
+});
+</script>
+
+<script>
+//JS
+layui.use(['element', 'layer', 'util'], function(){
+  var element = layui.element
+  ,layer = layui.layer
+  ,util = layui.util
+  ,$ = layui.$;
+});
+</script>
+</body>
+</html>
