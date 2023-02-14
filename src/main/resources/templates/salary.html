@@ -11,30 +11,11 @@
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
     <div class="layui-logo layui-hide-xs layui-bg-black">企业人事管理系统</div>
-    <!-- 头部区域（可配合layui 已有的水平导航） -->
-    <!-- <ul class="layui-nav layui-layout-left"> -->
-      <!-- 移动端显示 -->
-    <!--  <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
-        <i class="layui-icon layui-icon-spread-left"></i>
-      </li>
-      
-      <li class="layui-nav-item layui-hide-xs"><a href="">nav 1</a></li>
-      <li class="layui-nav-item layui-hide-xs"><a href="">nav 2</a></li>
-      <li class="layui-nav-item layui-hide-xs"><a href="">nav 3</a></li>
-      <li class="layui-nav-item">
-        <a href="javascript:;">nav groups</a>
-        <dl class="layui-nav-child">
-          <dd><a href="">menu 11</a></dd>
-          <dd><a href="">menu 22</a></dd>
-          <dd><a href="">menu 33</a></dd>
-        </dl>
-      </li>
-    </ul>-->
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item layui-hide layui-show-md-inline-block">
         <a href="">
           <img src="/imgs/头像.png" class="layui-nav-img"/>
-          tester
+          张骏
         </a>
       </li>
       <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
@@ -49,90 +30,139 @@
     <div class="layui-side-scroll">
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
       <ul class="layui-nav layui-nav-tree" lay-filter="test">
-        <!-- <li class="layui-nav-item layui-nav-itemed">
-          <a class="" href="javascript:;">menu group 1</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;">menu 1</a></dd>
-            <dd><a href="javascript:;">menu 2</a></dd>
-            <dd><a href="javascript:;">menu 3</a></dd>
-            <dd><a href="">the links</a></dd>
-          </dl>
-        </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">menu group 2</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;">list 1</a></dd>
-            <dd><a href="javascript:;">list 2</a></dd>
-            <dd><a href="">超链接</a></dd>
-          </dl>
-        </li>
-		<li class="layui-nav-item">
-		  <a class="" href="javascript:;">menu group 3</a>
-		  <dl class="layui-nav-child">
-		    <dd><a href="javascript:;">menu 1</a></dd>
-		    <dd><a href="javascript:;">menu 2</a></dd>
-		    <dd><a href="javascript:;">menu 3</a></dd>
-		    <dd><a href="">the links</a></dd>
-		  </dl>
-		</li>
-		<li class="layui-nav-item">
-		  <a class="" href="javascript:;">menu group 4</a>
-		  <dl class="layui-nav-child">
-		    <dd><a href="javascript:;">menu 1</a></dd>
-		    <dd><a href="javascript:;">menu 2</a></dd>
-		    <dd><a href="javascript:;">menu 3</a></dd>
-		    <dd><a href="">the links</a></dd>
-		  </dl>
-		</li> -->
 		<li class="layui-nav-item"><a href="personnalCenter.html">个人中心</a></li>
         <li class="layui-nav-item"><a href="attendance.html">考勤打卡</a></li>
         <li class="layui-nav-item"><a href="salary.html">工资查询</a></li>
 		<li class="layui-nav-item"><a href="reward.html">绩效查询</a></li>
-		<li class="layui-nav-item"><a href="recruitment.html">招聘查询</a></li>
-		<li class="layui-nav-item"><a href="file.html">档案查询</a></li>
-		<li class="layui-nav-item"><a href="workcenter.html">工作中心</a></li>
+        <li class="layui-nav-item"><a href="addSalary.html">新增薪资</a> </li>
       </ul>
     </div>
   </div>
   
   <div class="layui-body">
-    <!-- 内容主体区域 -->
-    <div style="padding: 15px;">这是工资</div>
-  </div>
-  
-  <div class="layui-footer">
-    <!-- 底部固定区域 -->
-    底部固定区域
+    <table class="layui-hide" id="test" lay-filter="test"></table>
   </div>
 </div>
+
+<script type="text/javascript" src="js/jquery-3.5.1.js"></script>
 <script src="layui/layui.js"></script>
+<script type="text/html" id="toolbarDemo">
+  <form class="layui-form">
+    <label class="layui-form-label">姓名</label>
+    <div class="layui-input-inline">
+      <input type="text" id="find" lay-verify="required" placeholder="请输入员工姓名" autocomplete="true" class="layui-input">
+    </div>
+    <button class="layui-btn layui-btn-normal lay-submit" lay-event="find" id="findbtn">查询</button>
+  </form>
+</script>
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
 <script>
-//JS 
-layui.use(['element', 'layer', 'util'], function(){
-  var element = layui.element
-  ,layer = layui.layer
-  ,util = layui.util
-  ,$ = layui.$;
-  
-  //头部事件
-  util.event('lay-header-event', {
-    //左侧菜单事件
-    menuLeft: function(othis){
-      layer.msg('展开左侧菜单的操作', {icon: 0});
-    }
-    ,menuRight: function(){
-      layer.open({
-        type: 1
-        ,content: '<div style="padding: 15px;">看起来高级的模板——by022020114张骏</div>'
-        ,area: ['260px', '100%']
-        ,offset: 'rt' //右上角
-        ,anim: 5
-        ,shadeClose: true
-      });
-    }
+  layui.use('table', function(){
+    var table = layui.table;
+    table.render({
+      elem: '#test'
+      ,url:'/salarylist'
+      ,toolbar: '#toolbarDemo'
+      ,title: '用户数据表'
+      ,totalRow: true
+      ,left: 200
+      ,cols: [
+        [
+          {type: 'checkbox', fixed: 'left'}
+          ,{field:'id', title:'ID', width:'3%', fixed: 'left', unresize: true, sort: true}
+          ,{field:'name', title:'姓名', width:'7%', edit: 'text'}
+          ,{field:'department', title:'部门', width:'10%'}
+          ,{field:'creatTime', title:'创建时间', width:'15%'}
+          ,{field:'baseSalary', title:'基础工资', width:'12%', edit: 'text'}
+          ,{field:'addSalary', title:'额外工资', width:'12%', edit: 'text'}
+          ,{field:'lastSalary', title:'最终薪资'}
+          ,{fixed:'right', title:'操作', toolbar: '#barDemo', width:'10%'}
+        ]
+      ]
+      ,page: true
+      ,id :'list'
+    });
+
+    //工具栏事件
+    table.on('toolbar(test)', function(obj){
+      switch(obj.event){
+        case 'find':
+          table.reload('list',{
+            url: '/findSalary/'+$("#find").val(),
+            where:{
+              key: 'name',
+              name: $("#find").val()
+            },
+            page:{
+              curr: 1
+            }
+          });
+          break;
+      };
+    });
+
+    //监听工具条
+    table.on('tool(test)', function(obj){
+      var data = obj.data;
+      if(obj.event === 'del'){
+        layer.confirm('真的删除行么', function(index){
+          obj.del();
+          layer.close(index)
+          $.ajax({
+            url: '/deleteSalary/'+obj.data.id,
+            type: 'DELETE',
+            data: JSON.stringify(obj.data),
+            dataType: 'json',
+            contentType: 'application/json'
+          })
+          layer.msg("删除成功");
+        });
+      } else if(obj.event === 'edit'){
+        $.ajax({
+          url: '/updateSalary',
+          type: 'POST',
+          data: JSON.stringify(obj.data),
+          dataType: 'json',
+          contentType: 'application/json'
+        })
+        layer.msg("修改成功");
+      }
+    });
   });
-  
-});
+
+
+</script>
+
+<script>
+  //JS
+  layui.use(['element', 'layer', 'util'], function(){
+    var element = layui.element
+            ,layer = layui.layer
+            ,util = layui.util
+            ,$ = layui.$;
+
+    //头部事件
+    util.event('lay-header-event', {
+      //左侧菜单事件
+      menuLeft: function(othis){
+        layer.msg('展开左侧菜单的操作', {icon: 0});
+      }
+      ,menuRight: function(){
+        layer.open({
+          type: 1
+          ,content: '<div style="padding: 15px;">看起来高级的模板——by022020114张骏</div>'
+          ,area: ['260px', '100%']
+          ,offset: 'rt' //右上角
+          ,anim: 5
+          ,shadeClose: true
+        });
+      }
+    });
+
+  });
 </script>
 </body>
 </html>

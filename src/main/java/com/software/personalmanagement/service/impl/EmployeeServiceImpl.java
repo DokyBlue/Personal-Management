@@ -46,6 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         dataVO.setCount((int) result.getTotal());
         List<Employee> employeeList = result.getRecords();
         List<EmployeeVO> employeeVOList = new ArrayList<>();
+
         for (Employee employee : employeeList) {
             EmployeeVO employeeVO = new EmployeeVO();
             BeanUtils.copyProperties(employee,employeeVO);

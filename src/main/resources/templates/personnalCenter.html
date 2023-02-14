@@ -34,10 +34,7 @@
         <li class="layui-nav-item"><a href="attendance.html">考勤打卡</a></li>
         <li class="layui-nav-item"><a href="salary.html">工资查询</a></li>
         <li class="layui-nav-item"><a href="reward.html">绩效查询</a></li>
-        <li class="layui-nav-item"><a href="recruitment.html">招聘查询</a></li>
-        <li class="layui-nav-item"><a href="file.html">档案查询</a></li>
-        <li class="layui-nav-item"><a href="workcenter.html">工作中心</a></li>
-        <li class="layui-nav-item"><a href="add.html">新增员工</a></li>
+        <li class="layui-nav-item"><a href="addEmployee.html">新增员工</a></li>
       </ul>
     </div>
   </div>
@@ -45,9 +42,8 @@
   <div class="layui-body">
     <table class="layui-hide" id="test" lay-filter="test"></table>
   </div>
-
-
 </div>
+
 <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
 <script src="layui/layui.js" charset="utf-8"></script>
 <script type="text/html" id="toolbarDemo">
@@ -58,12 +54,6 @@
     </div>
     <button class="layui-btn layui-btn-normal lay-submit" lay-event="find" id="findbtn">查询</button>
   </form>
-<!--  <div class="demoTable layui-form">
-    <div class="layui-inline">
-      <input class="layui-input" name="findname" id="find" placeholder="请输入员工姓名">
-    </div>
-    <button class="layui-btn" data-type="reload" id="findbtn">查询</button>
-  </div>-->
 </script>
 <script type="text/html" id="barDemo">
   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -83,19 +73,19 @@
       ,cols: [
         [
           {type: 'checkbox', fixed: 'left'}
-          ,{field:'id', title:'ID', width:50, fixed: 'left', unresize: true, sort: true, totalRowText: '合计'}
-          ,{field:'name', title:'姓名', width:80, edit: 'text'}
-          ,{field:'phone', title:'电话', width:120, edit: 'text'}
-          ,{field:'email', title:'邮箱', width:130, edit: 'text', templet: function(res){
+          ,{field:'id', title:'ID', width:'3%', fixed: 'left', unresize: true, sort: true, totalRowText: '合计'}
+          ,{field:'name', title:'姓名', width:'7%', edit: 'text'}
+          ,{field:'phone', title:'电话', width:'10%', edit: 'text'}
+          ,{field:'email', title:'邮箱', width:'15%', edit: 'text', templet: function(res){
             return '<em>'+ res.email +'</em>'
           }}
-          ,{field:'department', title:'部门', width:100}
-          ,{field:'level', title:'职位', width:100}
-          ,{field:'username', title:'用户名', width:80}
-          ,{field:'age', title:'年龄', width:80, sort: true}
-          ,{field:'sex', title:'性别', width:50}
-          ,{field:'status', title:'状态', width:60}
-          ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:120}
+          ,{field:'department', title:'部门', width:'7%'}
+          ,{field:'level', title:'职位', width:'10%'}
+          ,{field:'username', title:'用户名', width:'10%'}
+          ,{field:'age', title:'年龄', width:'7%', sort: true}
+          ,{field:'sex', title:'性别', width:'7%'}
+          ,{field:'status', title:'状态', width:'7%'}
+          ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}
         ]
       ]
       ,page: true
@@ -105,37 +95,7 @@
     //工具栏事件
     table.on('toolbar(test)', function(obj){
       switch (obj.event) {
-        /*case 'add':
-          layer.open({
-            type: 2,
-            content: 'add.html', //这里content是一个普通的String
-            area: ['500px','600px']
-          });
-          break;*/
         case 'find':
-         /* layer.open({
-            type: 2,
-            content: 'find.html',
-            area: ['500px', '300px']
-          });
-          table.reload('idTest', {
-            url: '/find'
-            ,where: {} //设定异步数据接口的额外参数
-            //,height: 300
-          });*/
-/*          var name = JSON.stringify($('#findName'))
-          table.reload('list',{
-            url: '/find/'+obj.data.name,
-            page: {
-              curr: 1
-            },
-            where: {
-              key: 'name',
-              name: name.val()
-            }
-          });*/
-
-          //console.log($("#find").val())
           table.reload('list',{
             url: '/find/'+$("#find").val(),
             where:{
@@ -146,7 +106,6 @@
               curr: 1
             }
           });
-
           break;
       };
     });
@@ -179,18 +138,6 @@
       }
     });
   });
-
-/*  $("#findbtn").click(function (){
-    console.log($("#find").val())
-    table.reload('list',{
-      where:{
-        name:$("#find").val(),
-      },
-      page:{
-        curr: 1
-      }
-    });
-  })*/
 
 </script>
 <script>

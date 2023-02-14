@@ -34,9 +34,6 @@
         <li class="layui-nav-item"><a href="attendance.html">考勤打卡</a></li>
         <li class="layui-nav-item"><a href="salary.html">工资查询</a></li>
         <li class="layui-nav-item"><a href="reward.html">绩效查询</a></li>
-        <li class="layui-nav-item"><a href="recruitment.html">招聘查询</a></li>
-        <li class="layui-nav-item"><a href="file.html">档案查询</a></li>
-        <li class="layui-nav-item"><a href="workcenter.html">工作中心</a></li>
       </ul>
     </div>
   </div>
@@ -89,23 +86,24 @@
       ,toolbar: '#toolbarDemo'
       ,title: '用户数据表'
       ,totalRow: true
+      //,height: 650
       ,left: 200
       ,cols: [
         [
           {type: 'checkbox', fixed: 'left'}
-          ,{field:'id', title:'ID', width:50, fixed: 'left', unresize: true, sort: true, totalRowText: '合计'}
-          ,{field:'name', title:'姓名', width:80, edit: 'text'}
-          ,{field:'phone', title:'电话', width:120, edit: 'text'}
-          ,{field:'email', title:'邮箱', width:130, edit: 'text', templet: function(res){
+          ,{field:'id', title:'ID', width:'3%', fixed: 'left', unresize: true, sort: true, totalRowText: '合计'}
+          ,{field:'name', title:'姓名', width:'7%', edit: 'text'}
+          ,{field:'phone', title:'电话', width:'10%', edit: 'text'}
+          ,{field:'email', title:'邮箱', width:'15%', edit: 'text', templet: function(res){
             return '<em>'+ res.email +'</em>'
           }}
-          ,{field:'department', title:'部门', width:100}
-          ,{field:'level', title:'职位', width:100}
-          ,{field:'username', title:'用户名', width:80}
-          ,{field:'age', title:'年龄', width:80, sort: true}
-          ,{field:'sex', title:'性别', width:50}
-          ,{field:'status', title:'状态', width:60}
-          ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:120}
+          ,{field:'department', title:'部门', width:'7%'}
+          ,{field:'level', title:'职位', width:'10%'}
+          ,{field:'username', title:'用户名', width:'10%'}
+          ,{field:'age', title:'年龄', width:'7%', sort: true}
+          ,{field:'sex', title:'性别', width:'7%'}
+          ,{field:'status', title:'状态', width:'7%'}
+          ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}
         ]
       ]
       ,page: true
@@ -142,7 +140,7 @@
         /* layer.open({
             title: '编辑信息'
         }); */
-        //window.location='../add.html'
+        //window.location='../addEmployee.html'
         //console.log(JSON.stringify(obj.data));
         $.ajax({
           url: '/updateEmployee',

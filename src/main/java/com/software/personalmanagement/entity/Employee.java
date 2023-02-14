@@ -16,9 +16,6 @@ public class Employee {
     private Integer status;
     private Integer permission;
 
-    public Integer getStatus(){
-        return status;
-    }
     public boolean getSex(){
         if(status==1)return false;
         else return true;

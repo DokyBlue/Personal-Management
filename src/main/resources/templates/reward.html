@@ -15,7 +15,7 @@
       <li class="layui-nav-item layui-hide layui-show-md-inline-block">
         <a href="">
           <img src="/imgs/头像.png" class="layui-nav-img"/>
-          tester
+          张骏
         </a>
       </li>
       <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
@@ -34,9 +34,7 @@
         <li class="layui-nav-item"><a href="attendance.html">考勤打卡</a></li>
         <li class="layui-nav-item"><a href="salary.html">工资查询</a></li>
 		<li class="layui-nav-item"><a href="reward.html">绩效查询</a></li>
-		<li class="layui-nav-item"><a href="recruitment.html">招聘查询</a></li>
-		<li class="layui-nav-item"><a href="file.html">档案查询</a></li>
-		<li class="layui-nav-item"><a href="workcenter.html">工作中心</a></li>
+        <li class="layui-nav-item"><a href="addReward.html">新增绩效</a></li>
       </ul>
     </div>
   </div>
@@ -46,13 +44,17 @@
     <table class="layui-hide" id="test" lay-filter="test"></table>
   </div>
 </div>
+
+<script type="text/javascript" src="js/jquery-3.5.1.js"></script>
 <script src="layui/layui.js"></script>
 <script type="text/html" id="toolbarDemo">
-  <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-  </div>
+  <form class="layui-form">
+    <label class="layui-form-label">姓名</label>
+    <div class="layui-input-inline">
+      <input type="text" id="find" lay-verify="required" placeholder="请输入员工姓名" autocomplete="true" class="layui-input">
+    </div>
+    <button class="layui-btn layui-btn-normal lay-submit" lay-event="find" id="findbtn">查询</button>
+  </form>
 </script>
 <script type="text/html" id="barDemo">
   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -74,33 +76,34 @@
       ,cols: [
         [
           {type: 'checkbox', fixed: 'left'}
-          ,{field:'id', title:'ID', width:50, fixed: 'left', unresize: true, sort: true, totalRowText: '合计'}
-          ,{field:'name', title:'姓名', width:70, edit: 'text'}
-          ,{field:'department', title:'部门', width:80}
-          ,{field:'status', title:'状态', width:80}
-          ,{field:'theme', title:'描述', width:150}
-          ,{field:'price', title:'金额', width:80}
-          ,{field:'message', title:'备注', width:200}
-          ,{fixed:'right', title:'操作', toolbar: '#barDemo', width:120}
+          ,{field:'id', title:'ID', width:'3%', fixed: 'left', unresize: true, sort: true, totalRowText: '合计'}
+          ,{field:'name', title:'姓名', width:'7%', edit: 'text'}
+          ,{field:'department', title:'部门', width:'7%'}
+          ,{field:'status', title:'状态', width:'7%'}
+          ,{field:'theme', title:'描述', width:'12%', edit: 'text'}
+          ,{field:'price', title:'金额', width:'7%', edit: 'text'}
+          ,{field:'message', title:'备注', edit: 'text'}
+          ,{fixed:'right', title:'操作', toolbar: '#barDemo', width:'10%'}
         ]
       ]
       ,page: true
+      ,id :'list'
     });
 
     //工具栏事件
     table.on('toolbar(test)', function(obj){
-      var checkStatus = table.checkStatus(obj.config.id);
       switch(obj.event){
-        case 'getCheckData':
-          var data = checkStatus.data;
-          layer.alert(JSON.stringify(data));
-          break;
-        case 'getCheckLength':
-          var data = checkStatus.data;
-          layer.msg('选中了：'+ data.length + ' 个');
-          break;
-        case 'isAll':
-          layer.msg(checkStatus.isAll ? '全选': '未全选')
+        case 'find':
+          table.reload('list',{
+            url: '/findReward/'+$("#find").val(),
+            where:{
+              key: 'name',
+              name: $("#find").val()
+            },
+            page:{
+              curr: 1
+            }
+          });
           break;
       };
     });
@@ -111,10 +114,25 @@
       if(obj.event === 'del'){
         layer.confirm('真的删除行么', function(index){
           obj.del();
-          layer.close(index);
+          layer.close(index)
+          $.ajax({
+            url: '/deleteReward/'+obj.data.id,
+            type: 'DELETE',
+            data: JSON.stringify(obj.data),
+            dataType: 'json',
+            contentType: 'application/json'
+          })
+          layer.msg("删除成功");
         });
       } else if(obj.event === 'edit'){
-        layer.alert('编辑行：<br>'+ JSON.stringify(data))
+        $.ajax({
+          url: '/updateReward',
+          type: 'POST',
+          data: JSON.stringify(obj.data),
+          dataType: 'json',
+          contentType: 'application/json'
+        })
+        layer.msg("修改成功");
       }
     });
   });
