@@ -7,9 +7,10 @@ import java.util.Date;
 @Data
 public class AttendanceVO {
     private Integer id;
-    private Date date;
+    private String startDate;
     private String name;
-    private Date start;     //上班打卡
-    private Date end;       //下班打卡
-    private Double workTime;//工作时长
+    private String startTime;       //上班打卡
+    private String endTime;         //下班打卡
+    private Double workTime;        //工作时长
+    private String status;
 }
