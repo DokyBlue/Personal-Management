@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface AttendanceMapper extends BaseMapper<Attendance> {
-    @Insert("insert into attendance(startDate, name, starttime, status)"+
+    @Insert("insert into attendance(start_date, name, start_time, status)"+
             "values (#{startDate}, #{name}, #{startTime}, #{status})")
     int startWork(Attendance attendance);
 
@@ -16,7 +16,7 @@ public interface AttendanceMapper extends BaseMapper<Attendance> {
     @Select("select * from attendance where name=#{name}")
     Attendance findAttendance(String name);
 
-    @Update("update attendance set endtime=#{endTime}, worktime=#{workTime} where id=#{id}")
+    @Update("update attendance set end_time=#{endTime}, work_time=#{workTime} where start_time=#{startTime}")
     int endWork(Attendance attendance);
 
 }

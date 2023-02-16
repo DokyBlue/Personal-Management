@@ -17,6 +17,9 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
     @Select("select * from employee where name = #{name}")
     public Employee find(String name);
 
+    @Select("select * from employee where username = #{username}")
+    public Employee findByUsername(String username);
+
     @Update("update employee set name=#{name},phone=#{phone},email=#{email},department_id=#{departmentId},level_id=#{levelId},username=#{username},age=#{age},sex=#{sex} where id = #{id}")
     public int update(Employee employee);
 }

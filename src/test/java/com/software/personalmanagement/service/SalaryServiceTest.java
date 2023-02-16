@@ -2,12 +2,9 @@ package com.software.personalmanagement.service;
 
 import com.software.personalmanagement.entity.Salary;
 import com.software.personalmanagement.vo.DataVO;
-import com.software.personalmanagement.vo.SalaryVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class SalaryServiceTest {

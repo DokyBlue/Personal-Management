@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @SpringBootTest
 class EmployeeServiceTest {
 
@@ -41,6 +44,10 @@ class EmployeeServiceTest {
     @Test
     void delete(){
         service.delete(1);
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        Date date1 = new Date(System.currentTimeMillis());
+
+        Date date2 = new Date(System.currentTimeMillis());
         int i = 1;
     }
 
