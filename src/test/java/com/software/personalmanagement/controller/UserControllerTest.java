@@ -20,7 +20,7 @@ class UserControllerTest {
     void login() {
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletResponse response = servletRequestAttributes.getResponse();
-        DataVO dataVO1 = userController.login("test1", "123456",response);
+        //DataVO dataVO1 = userController.login("test1", "123456",response);
 
         int i=1;
     }

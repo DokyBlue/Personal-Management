@@ -71,26 +71,31 @@ public class AttendanceController {
     public void endWork(HttpServletRequest request){
         Attendance attendance = new Attendance();
 
-        String name = null;
+        String startDate = null;
         String startTime = null;
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies){
             if(cookie.getName().equals("startTime"))
                 startTime = cookie.getValue();
+            if(cookie.getName().equals("startDate"))
+                startDate=cookie.getValue();
         }
         attendance.setStartTime(startTime);
 
         SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         Date date = new Date(System.currentTimeMillis());
         String endTime = format.format(date);
+        String day = dateFormat.format(date);
+
         try {
             Date start = format.parse(startTime);
             Date end = format.parse(endTime);
             long startTimeLong = start.getTime();
             long endTimeLong = end.getTime();
-
             Integer workTime = (int) (endTimeLong-startTimeLong)/(60*60*1000);
+            if (day!=startDate) workTime+=24;
             attendance.setWorkTime(workTime);
         } catch (ParseException e) {
             throw new RuntimeException(e);

@@ -20,7 +20,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/login")
-    public DataVO login(String username, String password, HttpServletResponse response, HttpServletRequest request){
+    public DataVO login(String username, String password, HttpServletResponse response){
         User user= userService.login(username, password);
         if(user!=null){
             user.setPassword(null);
